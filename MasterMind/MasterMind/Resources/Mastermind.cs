@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+
+
+using System.Collections.Generic;
 
 namespace MasterMind.Resources
 {
@@ -13,28 +15,38 @@ namespace MasterMind.Resources
 
         public List<ResultPeg> GetHints(List<CodePeg> guess)
         {
-            var hints = new List<ResultPeg>();
+            var hints = new Dictionary<CodePeg, ResultPeg>();
 
-            for (int i = 0; i < guess.Count; i++)
+            for (int i = 0; i < code.Count; i++)
             {
                 var positionGame = i;
-                var color = guess[i];
-                for (int j = 0; j < code.Count; j++)
+                var colorcode = code[i];
+
+                for (int j = 0; j < guess.Count; j++)
                 {
                     var position = j;
-                    var colorcode = code[j];
+                    var color = guess[j];
 
-                    if (color.Equals(colorcode) && positionGame == position)
+                    if (colorcode.Equals(color) && positionGame == position)
                     {
-                        hints.Add(ResultPeg.Black);
+                        if (hints.ContainsKey(colorcode))
+                        {
+                            hints.Add(color, ResultPeg.Black);
+                        }
+                        else
+                        {
+                            hints.Add(color, ResultPeg.Black);
+                        }
                     }
                     else if (color.Equals(colorcode))
                     {
-                        hints.Add(ResultPeg.White);
+                        if (hints.ContainsKey(color))
+                            continue;
+                        hints.Add(color, ResultPeg.White);
                     }
                 }
             }
-            return hints;
+            return new List<ResultPeg> (hints.Values);
         }
     }
 
