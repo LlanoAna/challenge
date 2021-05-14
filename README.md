@@ -10,6 +10,11 @@ Recibe una lista de las jugadas realizadas, dentro del metodo se recorre el prim
 
 Luego de esto se realiza la comparacion de los dos arreglos tanto del codigo como de la jugada, comparando el color y la posicion y que retorne "Black" y luego se realiza la comparacion del color para que el metodo retorne "White" segun las reglas del juego.
 
+Mejorando el Issue 
+
+Se creo una variable de tipo Diccionario al momento de hacer el recorrido del arreglo se creo una doble validacion que permite agregar al diccionario siempre y cuando el color con su key no existan de lo contrario continua con el recorrido de los arreglos. 
+
+
 Clase Program: 
 
 Metodo Main: 
